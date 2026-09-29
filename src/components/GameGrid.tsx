@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import gameService from "../services/game-service";
 import Game from "../models/game";
 import useGame from "../hooks/useGame";
+import { SimpleGrid } from "@chakra-ui/react";
+import GameCard from "./GameCard";
 
 interface FetchGamesResponse {
   count: number;
@@ -14,11 +16,15 @@ const GameGrid = () => {
   return (
     <>
       <p>{error ? "Error loading games" : "Games List"}</p>
-      <ul>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        spacing={6}
+        padding="6"
+      >
         {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
+          <GameCard key={game.id} game={game} />
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 };
