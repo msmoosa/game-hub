@@ -4,6 +4,7 @@ import Game from "../models/game";
 import gameService, { FetchGamesResponse } from "../services/game-service";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
+import { Genre } from "./useGenres";
 
 interface Platform {
   id: number;
@@ -11,6 +12,9 @@ interface Platform {
   slug: string;
 }
 
-const useGame = () => useData<Game>("/games");
+const useGame = (selectedGenre: Genre | null) =>
+  useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
+    selectedGenre?.id,
+  ]);
 
 export default useGame;
