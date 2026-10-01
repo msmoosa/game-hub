@@ -1,7 +1,7 @@
 import Game from "../models/game";
 import apiClient from "./api-client";
 
-interface FetchGamesResponse {
+export interface FetchGamesResponse {
   results: Game[];
 }
 
