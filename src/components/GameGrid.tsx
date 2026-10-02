@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import gameService from "../services/game-service";
 import Game, { Platform } from "../models/game";
 import useGame from "../hooks/useGame";
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
@@ -17,6 +17,7 @@ const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGame(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
+  if (error) return <Text>{error}</Text>;
   return (
     <>
       <SimpleGrid
